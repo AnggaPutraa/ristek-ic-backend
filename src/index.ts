@@ -1,5 +1,6 @@
 import express from "express";
 import morgan from "morgan";
+import { router as authRouter } from "./auth/auth.routes";
 
 const dotenv = require("dotenv");
 dotenv.config();
@@ -17,7 +18,9 @@ app.use(
     : morgan(":method :url :status :res[content-length] - :response-time ms")
 );
 
-app.use("/api", router);
+router.use("/auth", authRouter);
+
+app.use("/api/v1", router);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
