@@ -9,3 +9,32 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id          String      @id @unique @default(uuid())
+  email       String      @unique
+  full_name   String
+  password    String
+  posts       Post[]
+  user_tokens UserToken[]
+}
+
+model Post {
+  id        String   @id @default(uuid())
+  body      String
+  image     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    String
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model UserToken {
+  id          String   @id @unique @default(uuid())
+  user_id     String
+  token       String   @unique
+  expiration  DateTime
+  user        User     @relation(fields: [user_id], references: [id])
+  is_eligable Boolean  @default(false)
+}
