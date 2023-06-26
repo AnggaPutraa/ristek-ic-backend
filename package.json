@@ -29,6 +29,7 @@
     "zod": "^3.21.4"
   },
   "dependencies": {
+    "@prisma/client": "^4.16.1",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
@@ -36,7 +37,7 @@
     "prisma": "^4.16.1"
   },
   "scripts": {
-    "dev": "tsx watch ./src/server.ts",
+    "dev": "tsx watch ./src/index.ts",
     "prettier:check": "yarn prettier --check .",
     "prettier:fix": "yarn prettier --write .",
     "lint": "yarn eslint . --ext ts,json",
