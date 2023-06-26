@@ -1,6 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import { router as authRouter } from "./auth/auth.routes";
+import { router as postRouter } from "./post/post.routes";
 
 const dotenv = require("dotenv");
 dotenv.config();
@@ -19,6 +20,7 @@ app.use(
 );
 
 router.use("/auth", authRouter);
+router.use("/post", postRouter);
 
 app.use("/api/v1", router);
 

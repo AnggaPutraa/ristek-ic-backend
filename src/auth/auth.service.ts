@@ -57,6 +57,10 @@ class AuthService {
 
     return token;
   }
+
+  async getUserByEmail(email: string) {
+    return await authDao.getUserByEmail(email);
+  }
 }
 
 export default new AuthService();

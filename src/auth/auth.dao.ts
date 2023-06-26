@@ -29,6 +29,20 @@ class AuthDao {
       return null;
     }
   }
+
+  async getUserByEmail(email: string) {
+    try {
+      const data = await db.user.findUnique({
+        where: {
+          email,
+        },
+      });
+      return data;
+    } catch (e) {
+      console.log(e);
+      return null;
+    }
+  }
 }
 
 export default new AuthDao();
